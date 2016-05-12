@@ -1,0 +1,15 @@
+--help
+	táto nápoveda
+--input=filename
+	zadaný vstupní textový soubor v UTF-8 s popisem konečného automatu.
+--output=filename
+	textový výstupní soubor (opět v UTF-8) s popisem výsledného ekviva-
+	lentního 9 konečného automatu v předepsaném formátu.
+-e, --no-epsilon-rules
+	pro pouhé odstranění ε-pravidel vstupního konečného automatu. Parametr nelze kombinovat s parametrem -d (resp. --determinization).
+-d, --determinization
+	provede determinizaci bez generování nedostupných stavů (viz algoritmus IFJ, 4. přednáška, snímek 24/36). Parametr nelze kombinovat s parametrem -e (resp.
+	--no-epsilon-rules).
+-i, --case-insensitive
+	nebude brán ohled na velikost znaků při porovnávání symbolů či stavů (tj. a = A, ahoj = AhOj nebo A b = a B); ve výstupu potom budou všechna velká písmena
+	převedena na malá.

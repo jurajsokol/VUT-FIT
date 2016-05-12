@@ -1,0 +1,18 @@
+(
+{f, f_q1, f_q2, nfin, s},
+{'a', 'b', 'd', 'š'},
+{
+f 'a' -> f,
+f_q1 'a' -> f,
+f_q1 'b' -> f_q1,
+f_q2 'a' -> f,
+f_q2 'd' -> nfin,
+f_q2 'š' -> f_q2,
+s 'a' -> s,
+s 'b' -> f_q1,
+s 'd' -> nfin,
+s 'š' -> f_q2
+},
+s,
+{f, f_q1, f_q2}
+)

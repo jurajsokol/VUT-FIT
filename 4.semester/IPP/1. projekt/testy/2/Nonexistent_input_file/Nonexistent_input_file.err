@@ -1,0 +1,2 @@
+PHP Warning:  fopen(garbage): failed to open stream: No such file or directory in /home/juraj/Projekty/4.semester/IPP/PHP/testy/dka.php on line 215
+Error in opening file

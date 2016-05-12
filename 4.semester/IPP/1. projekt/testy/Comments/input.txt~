@@ -1,0 +1,12 @@
+({s, q1, q2, f}, #some
+{'b','a',#comments
+ 'š'}#are
+ , {s'a'->s, s''->q1, s''->#in
+ q2#weird
+ , q1#places
+ 'b'->q1,#but
+  q1'b'->f,
+q2'š'->q2#such
+, q2#is
+'š'->f, f'a'->f}#life
+, s, {f})
