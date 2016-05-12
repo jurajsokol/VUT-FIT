@@ -1,0 +1,398 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=ISO-8859-2">
+<title>Wiki</title>
+<link rel="SHORTCUT ICON" href="https://wis.fit.vutbr.cz/images/favicon.ico" type="image/x-icon">
+<link rel="stylesheet" href="Wiki_subory/style.css" type="text/css">
+<link rel="stylesheet" href="Wiki_subory/cwk-css.css" type="text/css">
+<script type="text/javascript">
+var ClockMonths = new Array("ledna", "února", "března", "dubna", "května", "června",
+"července", "srpna", "září", "října", "listopadu", "prosince");
+var ClockElm;
+var ClockDiff=0;
+
+function ClockInit()
+{
+    if (!document.getElementById) return;
+    ClockElm = document.getElementById('clock');
+    if (!ClockElm || !ClockElm.innerHTML) return;
+    var ClockTm = new Date();
+    var datefmt = /^(\d\d?)\. ([^ ]+) (\d{4}) (\d\d):(\d\d):(\d\d)$/;
+    var datep = datefmt.exec(ClockElm.innerHTML);
+    if (datep) {
+	var SrvClock = new Date();
+	SrvClock.setDate(datep[1]);
+	for (var i = 0; i<12; i++) {
+	    if (datep[2] == ClockMonths[i]) {
+		SrvClock.setMonth(i);
+	    }
+	}
+	SrvClock.setYear(datep[3]);
+	SrvClock.setHours(datep[4]);
+	SrvClock.setMinutes(datep[5]);
+	SrvClock.setSeconds(datep[6]);
+	ClockDiff = 500 + SrvClock.getTime()-ClockTm.getTime();
+    }
+    setInterval(UpdateClock, 1000);
+}
+
+function UpdateClock()
+{
+    var hr,min,sec,day,mon,year;
+
+    if (!ClockElm || !ClockElm.innerHTML) return;
+    var ClockTm = new Date();
+    ClockTm.setMilliseconds(ClockDiff+ClockTm.getMilliseconds());
+    if (ClockTm.getFullYear) year = ClockTm.getFullYear();
+    else year = ClockTm.getYear+1900;
+    mon = ClockTm.getMonth();
+    day = ClockTm.getDate();
+    hr = ClockTm.getHours();
+    min = ClockTm.getMinutes();
+    sec = ClockTm.getSeconds();
+    ClockElm.innerHTML = day+'. '+ClockMonths[mon]+' '+year+' '+(hr<=9?'0':'')+hr+':'+(min<=9?'0':'')+min+':'+(sec<=9?'0':'')+sec; 
+}
+</script>
+<!-- base href="https://wis.fit.vutbr.cz/FIT/st/cwk.php?title=IZP:Projekt2&csid=573884&id=10033" -->
+</head>
+<body onload="ClockInit()">
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tbody><tr>
+<td bgcolor="#0063A5" valign="bottom" width="100%"><img class="FITlogo" src="Wiki_subory/fit_cz.gif" alt="Fakulta informačních technologií" border="0" height="24">
+</td><td bgcolor="#0063A5" valign="middle" width="20"><a href="https://wis.fit.vutbr.cz/cgi-bin/codepage"><img class="FITlogo" src="Wiki_subory/globus.gif" alt="Language/Codepage" border="0" height="20" width="20"></a>
+</td><td bgcolor="#0063A5" valign="middle" width="26">
+<a href="https://wis.fit.vutbr.cz/FIT/st/cwk.php.en?title=IZP:Projekt2&amp;csid=573884&amp;id=10033"><img class="FITlogo" src="Wiki_subory/flag2_gb.gif" alt="" border="0" height="20" width="26"></a>
+</td>
+</tr>
+</tbody></table><script type="text/javascript">
+function showHide(el)
+{
+    var bdiv=document.getElementById(el);
+    if (bdiv==null) return false;
+    if (bdiv.style.display=='block') bdiv.style.display='none';
+    else bdiv.style.display='block';
+    return false;
+}
+
+function mouseOver(el)
+{
+    el.style.borderStyle = 'inset';
+}
+
+function mouseOut(el, sol)
+{
+    if (sol) {
+        el.style.borderStyle = 'outset';
+    } else {
+        el.style.borderStyle = 'outset';
+    }
+}
+
+function mouseClick(ev, uri)
+{
+    if (typeof window.event != 'undefined') window.event.returnValue = false;
+    else ev.preventDefault();
+    window.location = uri;
+}
+</script>
+<table class="noprint" style="background-color: #0063a5; border-collapse: separate" cellpadding="0" cellspacing="0" width="100%">
+<tbody><tr><th class="menu" onclick="mouseClick(event, '/FIT/st/index.php')" onmouseover="mouseOver(this)" onmouseout="mouseOut(this, 1)"><a style="font-size: 13px; font-family: Arial,sans-serif; color: white; background-color: #0063a5; text-decoration: none" href="https://wis.fit.vutbr.cz/FIT/st/index.php">home</a></th>
+<th class="menu" style="background-color: white; border-style: none" onclick="mouseClick(event, '/FIT/st/courses.php')"><a style="font-size: 13px; font-family: Arial,sans-serif; color: #0063a6; background-color: white; text-decoration: none" href="https://wis.fit.vutbr.cz/FIT/st/courses.php">předměty</a></th>
+<th class="menu" onclick="mouseClick(event, '/FIT/st/study-v.php')" onmouseover="mouseOver(this)" onmouseout="mouseOut(this, 1)"><a style="font-size: 13px; font-family: Arial,sans-serif; color: white; background-color: #0063a5; text-decoration: none" href="https://wis.fit.vutbr.cz/FIT/st/study-v.php">termíny</a></th>
+<th class="menu" onclick="mouseClick(event, '/FIT/st/course-reg.php')" onmouseover="mouseOver(this)" onmouseout="mouseOut(this, 1)"><a style="font-size: 13px; font-family: Arial,sans-serif; color: white; background-color: #0063a5; text-decoration: none" href="https://wis.fit.vutbr.cz/FIT/st/course-reg.php">registrace</a></th>
+<th class="menu" onclick="mouseClick(event, '/FIT/st/szz.php')" onmouseover="mouseOver(this)" onmouseout="mouseOut(this, 1)"><a style="font-size: 13px; font-family: Arial,sans-serif; color: white; background-color: #0063a5; text-decoration: none" href="https://wis.fit.vutbr.cz/FIT/st/szz.php">SZZ/DP/BP</a></th>
+<th class="menu" onclick="mouseClick(event, '/FIT/st/admin.php')" onmouseover="mouseOver(this)" onmouseout="mouseOut(this, 1)"><a style="font-size: 13px; font-family: Arial,sans-serif; color: white; background-color: #0063a5; text-decoration: none" href="https://wis.fit.vutbr.cz/FIT/st/admin.php">hesla</a></th>
+<th style="border-style: outset;" class="menu" onclick="mouseClick(event, '/FIT/st/other.php')" onmouseover="mouseOver(this)" onmouseout="mouseOut(this, 1)"><a style="font-size: 13px; font-family: Arial,sans-serif; color: white; background-color: #0063a5; text-decoration: none" href="https://wis.fit.vutbr.cz/FIT/st/other.php">ostatní</a></th>
+<th class="menu" onclick="mouseClick(event, '/FIT/st/logoff.php?logoff=1')" onmouseover="mouseOver(this)" onmouseout="mouseOut(this, 1)"><a style="font-size: 13px; font-family: Arial,sans-serif; color: white; background-color: #0063a5; text-decoration: none" href="https://wis.fit.vutbr.cz/FIT/st/logoff.php?logoff=1">odhlásit</a></th>
+</tr>
+</tbody></table>
+<table bgcolor="white" cellpadding="4" width="100%"><tbody><tr><td>Login xsokol08, <b>Sokol Juraj</b>, 1. ročník BIT, prezenční, FIT<br>
+Ak. rok 2014/2015 č.s. 1: řádný zápis<p></p></td><td align="right"><a href="https://wis.fit.vutbr.cz/FIT/st/course-sl.php?id=573884">Zpět na termíny</a>&nbsp;</td></tr></tbody></table>
+<table bgcolor="#ececec" border="0" bordercolor="#808080" cellpadding="0" height="75%" width="100%"><tbody><tr><td style="padding-top: 8px; border-top: solid 1px #888888; border-bottom: solid 1px #0063a5" valign="top"><table width="100%"><tbody><tr valign="top"><td>
+<div class="leftpane">
+    <div class="home">
+[[<a class="internal" href="https://wis.fit.vutbr.cz/FIT/st/cwk.php?title=IZP:&amp;csid=573884&amp;id=10033" id="wiki__top" accesskey="h" title="[H]">IZP Home</a>]]
+    </div>
+    <div id="toolbar" class="toolbar">
+   <div class="tb_main">
+
+<p>
+
+Navigace
+</p>
+
+<ul>
+<li class="level1"><a href="https://wis.fit.vutbr.cz/FIT/st/cwk.php?title=IZP:Main_Page&amp;csid=573884&amp;id=10033" class="internal" title="IZP:Hlavní stránka">Hlavní stránka</a></li>
+<li class="level1"><span class="curid"><a href="https://wis.fit.vutbr.cz/FIT/st/cwk.php?title=IZP:Projekt2&amp;action=recent&amp;csid=573884&amp;id=10033" class="internal" title="IZP:Projekt2">Poslední změny</a></span></li>
+<li class="level1"><a href="https://wis.fit.vutbr.cz/FIT/st/cwk.php?title=Help:Main_Page&amp;csid=573884&amp;id=10033" class="internal" title="Help:Hlavní stránka">Nápověda</a></li>
+</ul>
+
+<p>Stránka</p><div class="tb_box"><form action="cwk.php?title=IZP:Projekt2&amp;csid=573884&amp;id=10033" class="search" id="form_search" method="get"><div class="searchform">
+<input name="csid" value="573884" type="hidden">
+<input name="id" value="10033" type="hidden">
+<input autocomplete="off" id="qsearch" accesskey="f" name="search" class="text_search" title="Enter search text" type="text">
+<input name="dogo" value="Zobrazit" class="button" title="Zobrazit" type="submit"> <input name="dosearch" value="Hledat" class="button" title="Hledat" type="submit">
+</div></form>
+</div>
+
+
+<p>
+
+Nástroje
+</p>
+
+<ul>
+<li class="level1"><span class="curid"><a href="https://wis.fit.vutbr.cz/FIT/st/cwk.php?title=IZP:Projekt2&amp;action=backlink&amp;csid=573884&amp;id=10033" class="internal" title="IZP:Projekt2">Odkazuje sem</a></span></li>
+<li class="level1"><span class="curid"><a href="https://wis.fit.vutbr.cz/FIT/st/cwk.php?title=IZP:Projekt2&amp;action=upload&amp;ns=IZP&amp;csid=573884&amp;id=10033" class="internal" title="IZP:Projekt2">Nahrát soubor</a></span></li>
+<li class="level1"><span class="curid"><a href="https://wis.fit.vutbr.cz/FIT/st/cwk.php?title=IZP:Projekt2&amp;action=fileinfo&amp;ns=IZP&amp;list=1&amp;csid=573884&amp;id=10033" class="internal" title="IZP:Projekt2">Seznam souborů</a></span></li>
+<li class="level1"><span class="curid"><a href="https://wis.fit.vutbr.cz/FIT/st/cwk.php?title=IZP:Projekt2&amp;action=index&amp;csid=573884&amp;id=10033" class="internal" title="IZP:Projekt2">Seznam stránek</a></span></li>
+<li class="level1"><span class="curid"><a href="https://wis.fit.vutbr.cz/FIT/st/cwk.php?title=IZP:Projekt2&amp;action=history&amp;csid=573884&amp;id=10033" class="internal" title="IZP:Projekt2">Historie stránky</a></span></li>
+</ul>
+</div>   </div>
+</div>
+</td><td width="100%">
+<div class="rightpane">
+    <div class="bar" id="bar_top">
+    <ul class="bar_menu">
+<li><a href="https://wis.fit.vutbr.cz/FIT/st/cwk.php?title=IZP:Projekt2&amp;action=show&amp;rev=0&amp;csid=573884&amp;id=10033" class="selected" title="Stránka" rel="nofollow">Stránka</a></li><li><a href="https://wis.fit.vutbr.cz/FIT/st/cwk.php?title=IZP:Projekt2&amp;action=source&amp;rev=0&amp;csid=573884&amp;id=10033" title="Zdroj" rel="nofollow">Zdroj</a></li><li><a href="https://wis.fit.vutbr.cz/FIT/st/cwk.php?title=IZP:Projekt2&amp;action=subscribe&amp;csid=573884&amp;id=10033" title="Sledovat" rel="nofollow">Sledovat</a></li>  </ul>
+    </div>
+    <div class="page">
+<!-- wikipage start -->
+<h1>IZP:Projekt2</h1><div class="toc"><table class="toc"><tbody><tr><th colspan="8">Obsah</th></tr>
+<tr><td>1</td><td colspan="7"> <a class="internal" href="#Projekt_2_-_Itera%E8n%ED_v%FDpo%E8ty">Projekt 2 - Iterační výpočty</a></td></tr><tr><td>&nbsp;</td><td>1.1</td><td colspan="6"> <a class="internal" href="#Popis_projektu">Popis projektu</a></td></tr><tr><td>&nbsp;</td><td>1.2</td><td colspan="6"> <a class="internal" href="#Detailn%ED_specifikace">Detailní specifikace</a></td></tr><tr><td>&nbsp;</td><td>&nbsp;</td><td>1.2.1</td><td colspan="5"> <a class="internal" href="#P%F8eklad_a_odevzd%E1n%ED_zdrojov%E9ho_souboru">Překlad a odevzdání zdrojového souboru</a></td></tr><tr><td>&nbsp;</td><td>&nbsp;</td><td>1.2.2</td><td colspan="5"> <a class="internal" href="#Syntax_spu%B9t%ECn%ED">Syntax spuštění</a></td></tr><tr><td>&nbsp;</td><td>&nbsp;</td><td>1.2.3</td><td colspan="5"> <a class="internal" href="#Implementa%E8n%ED_detaily">Implementační detaily</a></td></tr><tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>1.2.3.1</td><td colspan="4"> <a class="internal" href="#Implementace_tangens">Implementace tangens</a></td></tr><tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>1.2.3.1.1</td><td colspan="3"> <a class="internal" href="#pod%FAkol">1. podúkol</a></td></tr><tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>1.2.3.1.2</td><td colspan="3"> <a class="internal" href="#pod%FAkol1">2. podúkol</a></td></tr><tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>1.2.3.1.3</td><td colspan="3"> <a class="internal" href="#Srovn%E1n%ED_p%F8esnosti_v%FDpo%E8tu_tangens">Srovnání přesnosti výpočtu tangens</a></td></tr><tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>1.2.3.2</td><td colspan="4"> <a class="internal" href="#M%EC%F8en%ED">Měření</a></td></tr><tr><td>&nbsp;</td><td>&nbsp;</td><td>1.2.4</td><td colspan="5"> <a class="internal" href="#P%F8%EDklady_vstup%F9_a_v%FDstup%F9">Příklady vstupů a výstupů</a></td></tr><tr><td>&nbsp;</td><td>1.3</td><td colspan="6"> <a class="internal" href="#Hodnocen%ED">Hodnocení</a></td></tr></tbody></table></div>
+
+<h1><span><a name="Projekt_2_-_Iterační_výpočty">Projekt 2 - Iterační výpočty</a></span></h1>
+
+<p>
+
+<b>Zadání je ve fázi tvorby a není konečné.</b>
+</p>
+
+<h2><span><a name="Popis_projektu">Popis projektu</a></span></h2>
+
+<p>
+
+Implementujte výpočet vzdálenosti a výšky měřeného objektu pomocí údajů 
+ze senzorů natočení měřicího přístroje. Výpočet proveďte pouze pomocí 
+matematických operací +,-,*,/.
+</p>
+
+<p>
+
+<a href="https://wis.fit.vutbr.cz/FIT/st/cwk.php?title=IZP:Projekt2&amp;src=Diagram.png&amp;ns=IZP&amp;&amp;action=fileinfo&amp;csid=573884&amp;id=10033" class="media" title="Diagram.png"><img src="Wiki_subory/cwk_003.png" class="media " alt="" align=""></a>
+</p>
+
+<h2><span><a name="Detailní_specifikace">Detailní specifikace</a></span></h2>
+
+<h3><span><a name="Překlad_a_odevzdání_zdrojového_souboru">Překlad a odevzdání zdrojového souboru</a></span></h3>
+
+<p>
+
+Odevzdání: Program implementujte ve zdrojovém souboru <tt>proj2.c</tt>. Zdrojový soubor odevzdejte prostřednictvím informačního systému.
+</p>
+
+<p>
+
+Překlad: Program překládejte s následujícími argumenty:</p><pre>$ gcc -std=c99 -Wall -Wextra -pedantic proj2.c -lm -o proj2</pre>
+
+<p></p>
+
+<h3><span><a name="Syntax_spuštění">Syntax spuštění</a></span></h3>
+
+<p>
+
+Program se spouští v následující podobě:</p><pre>./proj2 --help</pre>
+
+nebo<pre>./proj2 --tan A N M</pre>
+
+nebo<pre>./proj2 [-c X] -m A [B]</pre>
+
+<p></p>
+
+<p>
+
+Argumenty programu:
+</p>
+
+<ul>
+<li class="level1"><tt>--help</tt> způsobí, že program vytiskne nápovědu používání programu a skončí.</li>
+<li class="level1"><tt>--tan</tt> srovná přesnosti výpočtu tangens úhlu <tt>A</tt> (v radiánech) mezi voláním <tt>tan</tt> z matematické knihovny, a výpočtu tangens pomocí Taylorova polynomu a zřetězeného zlomku. Argumenty <tt>N</tt> a <tt>M</tt> udávají, ve kterých iteracích iteračního výpočtu má srovnání probíhat. 0 &lt; N &lt;= M &lt; 14</li>
+<li class="level1"><tt>-m</tt> vypočítá a změří vzdálenosti.
+<ul>
+<li class="level2">Úhel &#945; (viz obrázek) je dán argumentem <tt>A</tt> v radiánech. Program vypočítá a vypíše vzdálenost měřeného objektu. 0 &lt; A &lt;= 1.4 &lt; &#960;/2.</li>
+<li class="level2">Pokud je zadán, úhel &#946; udává argument <tt>B</tt> v radiánech. Program vypočítá a vypíše i výšku měřeného objektu. 0 &lt; B &lt;= 1.4 &lt; &#960;/2</li>
+<li class="level2">Argument <tt>-c</tt> nastavuje výšku měřicího 
+přístroje c pro výpočet. Výška c je dána argumentem X (0 &lt; X &lt;= 
+100). Argument je volitelný - implicitní výška je 1.5 metrů.</li>
+</ul>
+</li>
+</ul>
+
+<h3><span><a name="Implementační_detaily">Implementační detaily</a></span></h3>
+
+<p>
+
+Je zakázané použít funkce z matematické knihovny. Jedinou výjimkou je funkce <tt>tan</tt> použitá pouze pro srovnání výpočtů, funkce <tt>isnan</tt> a <tt>isinf</tt> a konstanty NAN a INF. Ve všech výpočtech používejte typ <tt>double</tt>. Uvažujte přesnost na 10 míst. Počet iterací v iteračních výpočtech odvoďte.
+</p>
+
+<h4><span><a name="Implementace_tangens">Implementace tangens</a></span></h4>
+
+<p>
+
+Funkci tangens implementujte dvakrát a to pomocí Taylorova polynomu a zřetězených zlomků.
+</p>
+
+<h5><span><a name="podúkol">1. podúkol</a></span></h5>
+
+<p>
+
+Tangens pomocí Taylorova polynomu implementujte ve funkci s prototypem:
+</p><div class="c syntax" style="font-family:monospace;"><pre style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;"><span style="color: #993333;">double</span> taylor_tan<span style="color: #009900;">(</span><span style="color: #993333;">double</span> x<span style="color: #339933;">,</span> <span style="color: #993333;">unsigned</span> <span style="color: #993333;">int</span> n<span style="color: #009900;">)</span><span style="color: #339933;">;</span></pre></div>
+kde x udává úhel a n rozvoj polynomu (počet členů). Taylorův polynom pro funkci tangens vypadá následovně:
+<p></p>
+
+<p>
+
+<a href="https://wis.fit.vutbr.cz/FIT/st/cwk.php?title=IZP:Projekt2&amp;src=Taylor_tan.png&amp;ns=IZP&amp;&amp;action=fileinfo&amp;csid=573884&amp;id=10033" class="media" title="taylor_tan.png"><img src="Wiki_subory/cwk.png" class="media " alt="" align=""></a>
+</p>
+
+<p>
+
+přičemž řada čitatelů ve zlomcích koeficientů je <a href="https://oeis.org/A002430" class="external" title="https://oeis.org/A002430" rel="nofollow">zde</a> a řada jmenovatelů ve zlomcích koeficientů je <a href="https://oeis.org/A156769" class="external" title="https://oeis.org/A156769" rel="nofollow">zde</a>. Ve svém programu použijte pouze 13 prvních koeficientů.
+</p>
+
+<h5><span><a name="podúkol1">2. podúkol</a></span></h5>
+
+<p>
+
+Tangens pomocí zřetězených zlomků (viz demonstrační cvičení) implementujte ve funkci s prototypem:
+</p><div class="c syntax" style="font-family:monospace;"><pre style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;"><span style="color: #993333;">double</span> cfrac_tan<span style="color: #009900;">(</span><span style="color: #993333;">double</span> x<span style="color: #339933;">,</span> <span style="color: #993333;">unsigned</span> <span style="color: #993333;">int</span> n<span style="color: #009900;">)</span><span style="color: #339933;">;</span></pre></div>
+kde x udává úhel a n rozvoj zřetězeného zlomku:
+<p></p>
+
+<p>
+
+<a href="https://wis.fit.vutbr.cz/FIT/st/cwk.php?title=IZP:Projekt2&amp;src=Tan1.png&amp;ns=IZP&amp;&amp;action=fileinfo&amp;csid=573884&amp;id=10033" class="media" title="tan1.png"><img src="Wiki_subory/cwk_004.png" class="media " alt="" align=""></a>
+</p>
+
+<p>
+
+nebo 
+</p>
+
+<p>
+
+<a href="https://wis.fit.vutbr.cz/FIT/st/cwk.php?title=IZP:Projekt2&amp;src=Tan2.png&amp;ns=IZP&amp;&amp;action=fileinfo&amp;csid=573884&amp;id=10033" class="media" title="tan2.png"><img src="Wiki_subory/cwk_002.png" class="media " alt="" align=""></a>
+</p>
+
+<h5><span><a name="Srovnání_přesnosti_výpočtu_tangens">Srovnání přesnosti výpočtu tangens</a></span></h5>
+
+<p>
+
+Srovnání iteračních a zabudovaných výpočtů realizujte pro zadaný počet 
+iterací. Výstup srovnání bude v podobě řádků obsahující následující:
+</p>
+
+<p>
+</p><pre>I M T TE C CE</pre>
+
+<p></p>
+
+<p>
+
+(odpovídající formátu "%d %e %e %e %e %e\n"), kde:
+</p>
+
+<ul>
+<li class="level1"><tt>I</tt> značí počet iterací iteračního výpočtu,</li>
+<li class="level1"><tt>M</tt> výsledek z funkce <tt>tan</tt> matematické knihovny,</li>
+<li class="level1"><tt>T</tt> výsledek z funkce <tt>taylor_tan</tt>,</li>
+<li class="level1"><tt>TE</tt> absolutní chybu mezi výpočtem pomocí Taylorova polynomu a matematickou knihovnou,</li>
+<li class="level1"><tt>C</tt> výsledek z funkce <tt>cfrac_tan</tt> a</li>
+<li class="level1"><tt>CE</tt> absolutní chybu mezi výpočtem pomocí zřetězených zlomků a matematickou knihovnou.</li>
+</ul>
+
+<p>
+
+Počet iterací udává interval daný argumenty programu <tt>&lt;N;M&gt;</tt>. Výstup programu tedy bude obsahovat N-M+1 řádků. První řádek tedy začíná číslem N.
+</p>
+
+<h4><span><a name="Měření">Měření</a></span></h4>
+
+<p>
+
+Pro měření vzdálenosti a výšky použijte vámi implementovanou funkci <tt>cfrac_tan</tt>. 
+</p>
+
+<p>
+
+V případě zadaného úhlu &#945; i &#946; vypište dvě čísla odpovídající délce d a 
+výšce v (v tomto pořadí). Oba číselné údaje vypisujte formátovaným 
+výstupem pomocí <tt>"%.10e"</tt>, každý údaj samostatně na jeden řádek. 
+</p>
+
+<h3><span><a name="Příklady_vstupů_a_výstupů">Příklady vstupů a výstupů</a></span></h3>
+
+<p>
+
+<i>Číselné údaje nemusí odpovídat vaší implementaci. Výsledek závisí na způsobu implementace a optimalizaci.</i>
+</p>
+
+<p>
+</p><pre>$ ./proj2 --tan 1.024 6 10
+6 1.642829e+00 1.634327e+00 8.502803e-03 1.642829e+00 3.298801e-09
+7 1.642829e+00 1.639216e+00 3.613451e-03 1.642829e+00 1.794520e-11
+8 1.642829e+00 1.641294e+00 1.535615e-03 1.642829e+00 7.460699e-14
+9 1.642829e+00 1.642177e+00 6.525932e-04 1.642829e+00 4.440892e-16
+10 1.642829e+00 1.642552e+00 2.773337e-04 1.642829e+00 0.000000e+00</pre>
+
+<p></p>
+
+<p>
+</p><pre>$ ./proj2 -m 0.3 0.9
+4.8490922156e+00
+7.6106234032e+00</pre>
+
+<p></p>
+
+<p>
+</p><pre>$ ./proj2 -c 1.7 -m 0.15 1.3
+1.1248205560e+01
+4.2217188781e+01</pre>
+
+<p></p>
+
+<h2><span><a name="Hodnocení">Hodnocení</a></span></h2>
+
+<p>
+
+Na výsledném hodnocení mají hlavní vliv následující faktory:
+</p>
+
+<ul>
+<li class="level1">implementace algoritmických schemat pro iterační výpočty,</li>
+<li class="level1">volba funkcí a jejich parametrů pro výpočet měřených veličin,</li>
+<li class="level1">výpočet tangens a srovnání přesnosti,</li>
+<li class="level1">výpočet vzdálenosti a výšky,</li>
+<li class="level1">ošetření neočekávaných stavů.</li>
+</ul>
+<div class="clearer"></div>   <!-- wikipage end -->
+    </div>
+
+    <div class="footer">
+      <div class="wiki_top"><a href="#top" onclick="window.scrollTo(0, 0)" title="Nahoru">Nahoru</a>
+      </div>
+      <div class="meta">
+        <div class="user">
+    </div>
+      <div class="doc">Id stránky: 156, verze: 4419, dne: 2014-11-07 21:52:30 uložil: smrcka</div>
+      </div>
+    </div>
+</div>
+</td></tr>
+</tbody></table>
+</td></tr></tbody></table><div class="noprint">
+<address class="noprint">&#169;Fakulta informačních technologií VUT v Brně, Božetěchova 2, 612 66 Brno<br>Připomínky zasílejte na adresu <a href="mailto:lampa@fit.vutbr.cz">lampa@fit.vutbr.cz</a></address></div>
+
+
+</body></html>
