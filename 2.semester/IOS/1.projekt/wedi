@@ -1,0 +1,187 @@
+#!/bin/bash
+
+
+# testuje či je premenná WEDI_RC inicializovaná a či súbor existuje
+test_suboru_WEDI_RC(){
+    if [ -z "$1" ]
+    then
+        echo "Premenná WEDI_RC nie je inicializovaná" >&2
+        exit 1
+    else
+        if ! test -w "$1"; then
+            echo "Súbor WEDI_RC neexistuje alebo k nemu program nemá prístupové práva" >&2
+            exit 1
+        fi
+    fi
+}
+
+
+# testuje nastavenia premennych EDITOR a VISUAL
+test_premennych_editoru(){
+    if [ -z $EDITOR ]
+    then
+        if [ -z $VISUAL ]
+        then
+            echo "Premenné EDITOR a VISUAL nie sú inicializované" >&2
+            exit 1
+        else
+            eval $1="'$VISUAL'"
+        fi
+    else
+        eval $1="'$EDITOR'"
+    fi
+}
+
+
+test_suboru() {
+    if test -f "$1$2"; then
+        echo "$2"
+    fi
+}
+
+
+uprav_zadanu_adresu() {
+    if [[ `echo ${1:(-1)}` == "/" ]]; then
+        a=`echo "$1"`
+    else a=`echo "$1/"`
+    fi
+    if [[ "$a" == "./"* ]]; then
+        echo "`pwd``echo "$a" | sed -e 's@^.@@'`"
+    else echo "$a"
+    fi
+}
+
+
+# záznam o editovaní súboru zo zápisom do WEDI_RC
+zapis_zaznam(){
+if [[ "$1" == "."* ]]; then
+    echo "`pwd``echo "$1" | sed -e 's@^.@@g'` `date +"%Y%m%d"`" >> "$WEDI_RC"
+elif [[ "$1" == *"/"* ]]; then #kontroluje či je zadaný len názov súboru alebo aj s cestou
+    echo "$1 `date +"%Y%m%d"`" >> "$WEDI_RC"
+else
+    echo "`pwd`/$1 `date +"%Y%m%d"`" >> "$WEDI_RC"
+fi
+}
+
+
+# vyhlada a spusti naposledy editovany subor
+naposledy_editovany_subor() {
+    if test -d "$1"; then
+        file=`grep "$1" < "$WEDI_RC" |  sed -e "s@$1@@g" | sed -e 's@.........$@@' | grep -v "/" | while read f; do test_suboru "$1" "$f"; done | tail -n 1`
+        if [[ $file == "" ]]; then
+            echo "V priečinku $1 ešte nebol editovaný súbor" >&2
+        else
+            $EDITOR "$1$file"
+            e_err=$?
+            zapis_zaznam "$1$file"
+        fi
+    else echo "$1 nie je priečinkom" >&2
+        exit_err=1
+    fi
+    exit $exit_err
+}
+
+
+# ak je zadany prepinac -m vybere sa najcastejsie editovany subor
+najcastejsie_editovany_s() {
+    if test -d "$1"; then
+        file=`grep "$1" <$WEDI_RC | sed -e "s@$1@@g" | sed -e 's@.........$@@' | grep -v "/" | sort | uniq -c | sort -h | sed -e 's@^......[0-9]* @@g' | while read f; do test_suboru "$1" "$f"; done | tail -n 1`
+        if [[ $file == "" ]]; then
+            echo "V priečinku $1 nebol editovaný súbor" >&2
+        else
+            $EDITOR "$1$file"
+            e_err=$?
+            zapis_zaznam "$1$file"
+        fi
+    else echo "$1 nie je priečinkom" >&2
+        exit_err=1
+    fi
+    exit $exit_err
+}
+
+
+# ak je zadany prepinac -l vypisu sa subory z priecinku, ktore boli editovane
+vypis_subory_z_priecinku () {
+    if test -d "$1"; then
+        grep "$1" < "$WEDI_RC" | sed -e "s@$1@@g" | sed -e 's@.........$@@' | grep -v "/" | sort | uniq | while read f; do test_suboru "$1" "$f"; done
+    else echo "$1 nie je priečinkom" >&2
+    fi
+}
+
+
+# vypise editovane subory pred zadaným datumom
+porovnanie_datumu_b(){
+    datum=`echo $1 | tr -d "-"`
+    grep "$2" < "$WEDI_RC" | sed -e "s@$2@@g" | grep -v "/" |
+    while read riadok; do
+        if [[ `echo ${riadok:(-8)}` -le $datum ]]; then
+            echo "$riadok"
+        fi
+    done | sed -e 's@.........$@@' | sort | uniq |
+    while read file; do
+        test_suboru "$2" "$file"
+    done
+}
+
+
+# vypise editovane subory po zadanom datume
+porovnanie_datumu_a(){
+    datum=`echo $1 | tr -d "-"`
+    grep "$2" < "$WEDI_RC" | sed -e "s@$2@@g" | grep -v "/" |
+    while read riadok; do
+        if [[ `echo ${riadok:(-8)}` -ge $datum ]]; then
+            echo "$riadok"
+        fi
+    done | sed -e 's@.........$@@' | sort | uniq |
+    while read file; do
+        test_suboru "$2" "$file"
+    done
+}
+
+
+#testovanie premennych pre chod skriptu
+test_premennych_editoru editor
+test_suboru_WEDI_RC "$WEDI_RC"
+
+
+#spracovanie argumentov
+spusti_editor=0
+while getopts ":ablm" opt; do
+    case $opt in
+        l) if [ $# -eq 2 ]; then p="$2"; else p=`pwd`; fi
+            vypis_subory_z_priecinku  "`uprav_zadanu_adresu "$p"`"
+           spusti_editor=1
+        ;;
+        m) if [ $# -eq 2 ]; then p="$2"; else p=`pwd`; fi
+           najcastejsie_editovany_s  "`uprav_zadanu_adresu "$p"`"
+           spusti_editor=1
+        ;;
+        a) if [ $# -eq 3 ]; then p="$3"; else p=`pwd`; fi
+           porovnanie_datumu_a "$2" "`uprav_zadanu_adresu "$p"`"
+           spusti_editor=1
+        ;;
+        b) if [ $# -eq 3 ]; then p="$3"; else p=`pwd`; fi
+           porovnanie_datumu_b "$2" "`uprav_zadanu_adresu "$p"`"
+           spusti_editor=1
+        ;;
+        \?) echo "Invalid option: -$OPTARG" >&2
+        ;;
+    esac
+done
+
+
+if [ $# == 1 ]; then p="$1"; else p=`pwd`; fi 
+if [[ $spusti_editor -eq 0 ]]
+then
+    if test -f "$1"; then
+        $editor "$1"
+        e_err=$?
+        zapis_zaznam "$1"
+    elif test -d "$p"; then
+        naposledy_editovany_subor "`uprav_zadanu_adresu "$p"`"
+    else echo "\"$1\" neexistuje" >&2
+        e_err=1
+    fi
+fi
+
+exit $exit_err
