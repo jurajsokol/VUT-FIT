@@ -1,11 +1,6 @@
-# Create currency converter
+# Currency converter
 
-## Limitations
-
-No limitations.
-
-- Python2.7 or 3
-- all modules are allowed
+Written in Python 3
 
 ## Parameters
 - --amount - amount which we want to convert - float
