@@ -3,10 +3,11 @@
 ---
 ### Zoznam projektov:
 1. semester:
- * projekty v jazyku C zo základov programovania
-
+ * projekty v jazyku C zo Základov programovania
 2. semester:
+ * projekt z predmetu Operačné systémy v skriptovacom jazyku Bash
 3. semester:
+ * projekty z preddmetu Algoritmy v jazku C. Práca nad rôznymy dynamickými štruktúrami a poliami.
 4. semester:
  * Determinizace konečného automatu v PHP 5
 
