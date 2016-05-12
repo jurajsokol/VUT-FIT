@@ -55,7 +55,7 @@ kde x udává úhel a n rozvoj polynomu (počet členů). Taylorův polynom pro 
 
 přičemž řada čitatelů ve zlomcích koeficientů je [zde](https://oeis.org/A002430) a řada jmenovatelů ve zlomcích koeficientů je [zde](https://oeis.org/A156769). Ve svém programu použijte pouze 13 prvních koeficientů.
 
-#### **2. podúkol**
+##### **2. podúkol**
 
 Tangens pomocí zřetězených zlomků (viz demonstrační cvičení) implementujte ve funkci s prototypem:
 ```
@@ -102,6 +102,8 @@ $ ./proj2 --tan 1.024 6 10
 $ ./proj2 -m 0.3 0.9
 4.8490922156e+00
 7.6106234032e+00
+```
+```
 $ ./proj2 -c 1.7 -m 0.15 1.3
 1.1248205560e+01
 4.2217188781e+01
