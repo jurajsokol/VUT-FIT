@@ -1,5 +1,7 @@
 C201: jednosměrně vázaný lineární seznam,
+
 C203: fronta znaků v poli a
+
 C206: dvousměrně vázaný lineární seznam.
 
 ---
