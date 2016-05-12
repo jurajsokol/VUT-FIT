@@ -8,3 +8,7 @@
 3. semester:
 4. semester:
  * Determinizace konečného automatu v PHP 5
+
+---
+Projekty v Python 3:
+* Currency converter
