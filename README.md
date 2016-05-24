@@ -8,6 +8,7 @@
  * projekt z predmetu Operačné systémy v skriptovacom jazyku Bash
 3. semester:
  * projekty z preddmetu Algoritmy v jazku C. Práca nad rôznymy dynamickými štruktúrami a poliami.
+ * [Interpret](https://github.com/xsokol08/IFJ15) jazyka IFJ15 z predmetu Formální jazyky a překladače
 4. semester:
  * Determinizace konečného automatu v PHP 5
 
