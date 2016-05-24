@@ -1,12 +1,12 @@
 
 
 
- # IPK 2. projekt (Klient - server)
+# IPK 2. projekt (Klient - server)
 Autor: Juraj Sokol<br />
-Login: xsokol08
+Login: xsokol08<br />
 
 ### O projete:
-Obsahuje dva spustitelné súbory - klient a server, ktoré dokážu spolu komunikovať a posielať si navzájom súbory.
+Obsahuje dva spustitelné súbory - klient a server, ktoré dokážu spolu komunikovať a posielať si navzájom súbory. Kompletné zaddanie v súbore ipk2-2016.pdf.
 
 ### Vstupné atribúty
 #### Klient:
