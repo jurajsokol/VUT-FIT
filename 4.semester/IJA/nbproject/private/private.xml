@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-private xmlns="http://www.netbeans.org/ns/project-private/1">
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+        <group>
+            <file>file:/C:/Users/juraj/Documents/NetBeansProjects/Othello/src/ija/ija2015/game/Game.java</file>
+            <file>file:/C:/Users/juraj/Documents/NetBeansProjects/Othello/src/UI/Save.java</file>
+            <file>file:/C:/Users/juraj/Documents/NetBeansProjects/Othello/src/ija/ija2015/game/Player.java</file>
+            <file>file:/C:/Users/juraj/Documents/NetBeansProjects/Othello/src/ija/ija2015/undo/Undo.java</file>
+            <file>file:/C:/Users/juraj/Documents/NetBeansProjects/Othello/src/ija/ija2015/game/HumanPlayer.java</file>
+            <file>file:/C:/Users/juraj/Documents/NetBeansProjects/Othello/src/UI/GameUI.java</file>
+            <file>file:/C:/Users/juraj/Documents/NetBeansProjects/Othello/src/UI/Load.java</file>
+            <file>file:/C:/Users/juraj/Documents/NetBeansProjects/Othello/src/ija/ija2015/board/Disk.java</file>
+            <file>file:/C:/Users/juraj/Documents/NetBeansProjects/Othello/src/ija/ija2015/board/BoardField.java</file>
+            <file>file:/C:/Users/juraj/Documents/NetBeansProjects/Othello/src/ija/ija2015/board/BorderField.java</file>
+            <file>file:/C:/Users/juraj/Documents/NetBeansProjects/Othello/src/ija/ija2015/game/ReversiRules.java</file>
+            <file>file:/C:/Users/juraj/Documents/NetBeansProjects/Othello/src/ija/ija2015/board/Field.java</file>
+            <file>file:/C:/Users/juraj/Documents/NetBeansProjects/Othello/src/UI/welcome.java</file>
+            <file>file:/C:/Users/juraj/Documents/NetBeansProjects/Othello/src/ija/ija2015/game/PCplayer.java</file>
+            <file>file:/C:/Users/juraj/Documents/NetBeansProjects/Othello/src/ija/ija2015/undo/Move.java</file>
+            <file>file:/C:/Users/juraj/Documents/NetBeansProjects/Othello/src/ija/ija2015/Main.java</file>
+            <file>file:/C:/Users/juraj/Documents/NetBeansProjects/Othello/src/ija/ija2015/board/Board.java</file>
+            <file>file:/C:/Users/juraj/Documents/NetBeansProjects/Othello/src/UI/Win.java</file>
+            <file>file:/C:/Users/juraj/Documents/NetBeansProjects/Othello/src/UI/Policko.java</file>
+            <file>file:/C:/Users/juraj/Documents/NetBeansProjects/Othello/src/ija/ija2015/undo/Command.java</file>
+        </group>
+    </open-files>
+</project-private>

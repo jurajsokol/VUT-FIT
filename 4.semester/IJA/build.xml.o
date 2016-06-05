@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='utf-8'?>
+<project name="Othello" default="compile" basedir=".">
+
+  <description>IJA - semestralni projekt: Hra Othello (Reversi)</description>
+
+  <property name="src" location="src"/> <!-- zdrojové súbory --> 
+  <property name="build" location="build"/>
+  <property name="dest" location="dest-client"/>
+  <property name="lib" location="lib"/>
+  <property name="doc" location="doc"/>
+
+  <target name="clean">
+    <delete dir="${build}"/>
+    <delete dir="${dest}"/>
+    <delete dir="${doc}"/>
+
+    <mkdir dir="${build}"/>
+    <mkdir dir="${dest}"/>
+    <mkdir dir="${doc}"/>
+  </target>
+
+
+  <target name="compile" depends="clean" description="Compile and make jar">
+    <javac srcdir="${src}" destdir="${build}" encoding="utf-8" />
+    <jar destfile="${dest}/ija2015-client.jar" basedir="${build}">
+        <manifest>
+          <attribute name="Main-Class" value="ija.ija2015.Main"/>
+      </manifest>
+    </jar>
+    <javadoc sourcepath="${src}" destdir="${doc}" />
+  </target>
+
+
+  <target name="run">
+    <java jar="${dest}/ija2015-client.jar" dir="${dest}" fork="true"/>
+  </target>
+
+</project>
