@@ -1,7 +1,7 @@
 ![logo](/logo/FIT_barevne_RGB_CZ.png)
 # VUT FIT
 ---
-Osobné stránky: [xsokol08.github.io](xsokol08.github.io)
+Osobné stránky: [xsokol08.github.io](www.xsokol08.github.io)
 
 ### Zoznam projektov:
 1. semester:
